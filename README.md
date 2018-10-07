@@ -1,5 +1,5 @@
 ## Checkliste
-# Qualität von Code und Daten in \LaTeX-Projekten
+# Qualität von Code und Daten in LaTeX-Projekten
 
 zusammengestellt von Tobi W_
 
