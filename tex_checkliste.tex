@@ -1,0 +1,185 @@
+\documentclass[
+   ngerman,
+   fontsize = 11.5pt,
+   parskip = half,
+   headings = small,
+]{scrartcl}
+
+% Basispakete
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Sprache
+\usepackage{babel}
+\usepackage{csquotes}
+
+% Schrift und Farbe
+\usepackage[default]{sourcesanspro}
+\usepackage[scale = 0.95]{sourcecodepro}
+\usepackage{microtype}
+\usepackage{metalogo}
+   \setlogokern{La}{-0.185em}
+   \setlogokern{aT}{-0.1em}
+   \setlogokern{Te}{-0.12em}
+   \setlogokern{eX}{-0.01em}
+   \setLaTeXa{\scshape a}
+   \setlogodrop[TeX]{0.4ex}
+\usepackage{xcolor}
+   \definecolor{spot}{RGB}{0,100,138}
+   \definecolor{gray}{RGB}{199,215,221}
+   \colorlet{gray}{spot!17}
+
+% Layout
+\usepackage{geometry}
+   \geometry{%
+      margin = 30mm,
+   }
+\usepackage{ragged2e}
+\pagestyle{empty}
+\setcounter{secnumdepth}{-1}
+
+% Links
+\usepackage[
+   colorlinks,
+   allcolors = spot
+]{hyperref}
+\urlstyle{same}
+
+% Überschriften
+\let\section\minisec
+
+% Checklisten-Umgebung
+\usepackage{enumitem}
+   \newcommand{\checkbox}{\textcolor{gray}{\rule[-0.08em]{0.85em}{0.85em}}}
+   \newlist{checklist}{itemize}{2}
+   \setlist[checklist]{
+      label = \checkbox,
+      align = left,
+      labelsep =    0.5em,
+      %             +
+      labelwidth =  1.0em,
+      %             =
+      leftmargin =  1.5em,
+   }
+
+% Befehl für Links
+\newcommand{\hint}[1]{{%
+   \par
+   \vspace{-\parskip}%
+   \footnotesize
+   #1
+}}
+
+% Befehle für Code, Macronamen, Umgebungen, Programme, Pakete etc.
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\cs}[1]{\code{\textbackslash#1}}
+\newcommand{\env}[1]{\code{\{#1\}}}
+\newcommand{\prg}[1]{\hyperlink{https://ctan.org/pkg/#1}{\code{\itshape#1}}}
+\newcommand{\pkg}[1]{\code{#1}}
+\newcommand{\msg}[1]{\textit{\enquote{#1}}}
+
+\begin{document}
+\RaggedRight
+
+% Titel/Kopf
+\begin{center}
+   \setlength{\parskip}{0pt}
+   \bfseries
+   \textls[50]{CHECKLISTE}
+   
+   \smallskip
+   \LARGE\color{spot}
+   Qualität von Code und Daten in \LaTeX-Projekten
+   
+   \vspace{\baselineskip}
+   \normalsize\mdseries\normalcolor
+   Zusammengestellt von Tobi W\_ (\url{mail@tobiw.de})\\
+   Version 0.0 --- \url{https://github.com/tweh/tex-checkliste}\\
+\end{center}
+
+\vspace{\baselineskip}
+{\footnotesize\itshape
+   Ohne Anspruch auf Vollständigkeit! Ergänzungen und Korrekturen gerne per
+   E-Mail oder über GitHub.
+\par}
+
+\vspace{2\baselineskip}
+\section{Allgemeines}
+\begin{checklist}
+   \item Sind alle Dateien einheitlich kodiert?
+      \hint{In der Regel Unicode (UTF-8) oder ISO-8859-1 (latin1).}
+   \item Lässt sich das Dokument fehlerfrei kompilieren?
+   \begin{checklist}
+      \item Sind alle verwendeten Befehle/Umgebungen definiert?
+      \item Werden Umgebungen, Argumente, Gruppen etc. korrekt geschlossen?
+      \item Sind alle eingebundenen \TeX-Dateien vorhanden?
+      \item Sind alle eingebundenen Bilddateien vorhanden?
+      \item \dots
+   \end{checklist}
+   \item Ist der Code bzw. das Projekt ordentlich angelegt?
+   \begin{checklist}
+      \item Sind lange Dokumente in einzelne Dateien aufgeteilt?
+         \hint{\url{https://tex.stackexchange.com/q/246/4918}}
+      \item Wurden Kommentare zur Erklärung/Beschreibung verwendet?
+      \item Werden Einrückungen etc. verwendet, um den Code zu gliedern/strukturieren?
+         \hint{\url{https://tex.stackexchange.com/q/40775/4918}}
+   \end{checklist}
+   \item Werden veraltete/obsolete Pakete oder Befehle etc. benutzt?
+      \hint{\url{https://ctan.org/pkg/l2tabu}}
+\end{checklist}
+
+\section{Schrift und Text}
+\begin{checklist}
+   \item Sind alle verwendeten Schriften und Schriftschnitte verfügbar?
+      \hint{Warnung \msg{Font shape `x' undefined} in der LOG-Datei prüfen.}
+   \item Werden noch obsolete Schriftschalter (z.\,B. \cs{bf}) benutzt?
+      \hint{\url{https://ctan.org/pkg/l2tabu}}
+   \item Werden Absätze korrekt ausgezeichnet (Leerzeile oder \cs{par}; nicht \cs{\textbackslash})?
+   \item Wird \cs{emph} (statt \cs{textit}) für einfache Auszeichnungen benutzt?
+   \item Werden Auszeichnungen im Text durch geeignete Befehle (ggf. selbst definiert) erreicht?
+      \hint{Nur mit einem \emph{logischen Markup} bleibt das Dokument auch bei Änderungen
+      an der Art der Auszeichnung konsistent.}
+   \item Werden Anführungszeichen korrekt gesetzt?
+      \hint{Am besten mit \pkg{csquotes}.}
+   \item Wurden Abkürzungen mit schmalen Leerzeichen gesetzt?
+      \hint{\code{z.\textbackslash,B.} statt \code{z. B.} oder \code{z.B.}}
+   \item Wurden bereits viele manuelle Umbrüche u.\,ä. eingesetzt, die beim Satz in einem
+      ggf. anderen Layout stören?
+\end{checklist}
+
+\section{Mathematiksatz und Formeln}
+\begin{checklist}
+   \item Wird der Mathe-Modus korrekt eingesetzt und alles entsprechend gekennzeichnet?
+      \hint{Bspw. müssen auch einzelne Variablen im Fließtext ausgezeichnet sein.}
+   \item Werden noch die veralteten Matheumgebungen \code{\$\$...\$\$} oder \env{eqnarray}
+      benutzt?
+      \hint{\url{http://texblog.net/latex-archive/maths/eqnarray-align-environment/}}
+      \hint{\url{https://tex.stackexchange.com/q/503/4918}}
+   \item Werden Zahlen und Einheiten korrekt formatiert?
+      \hint{Am besten mit \pkg{siunitx}.}
+\end{checklist}
+
+\section{Verweise, Quellen und Co.}
+\begin{checklist}
+   \item Werden Querverweise mit der \cs{label}-\cs{ref}-Mechanik erzeugt?
+   \item Sind alle Querverweise eindeutig definiert?
+      \hint{Warnungen \msg{Reference `x' on page n undefined} oder \msg{Label `x' multiply defined} in der LOG-Datei prüfen und im Dokument nach \enquote{\textbf{??}} suchen.}
+   \item Werden Literaturverzeichnis und -verweise automatisch erzeugt?
+   \item Sind alle Literaturverweise (Zitierschlüssel) definiert?
+      \hint{Warnung \msg{Citation `x' on page n undefined} in der LOG-Datei prüfen.}
+   \item Lässt sich die Bibliografie ohne Fehler und Warnungen verarbeiten?
+      \hint{Warnungen und Fehlermeldungen des Bibliographieprogramms (z.\,B. \prg{biber}) beachten.}
+   \item Lassen sich Index- und Glossarhilfsdateien ohne Fehler und Warnungen verarbeiten?
+      \hint{Warnungen und Fehlermeldungen des entsprechenden Programms (z.\,B. \prg{xindy}) beachten.}
+\end{checklist}
+
+\section{Abbildungen und Tabellen}
+\begin{checklist}
+   \item Sind eingebundene Bilddateien vorhanden (s.\,o.)?
+   \item Haben eingebundene Bilddateien eine ausreichende Auflösung?
+      \hint{Kompilierte PDF bspw. mit Preflight-Funktion von Acrobat prüfen.}
+   \item Werden Gleitumgebungen wie \env{figure} oder \env{table} (sinnvoll) benutzt?
+   \item Sind Abbildungen und Tabellen mit einer Beschriftung (\cs{caption}) versehen?
+\end{checklist}
+
+\end{document}
