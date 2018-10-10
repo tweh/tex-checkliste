@@ -146,7 +146,7 @@
 \section{Schrift und Text}
 \begin{checklist}
    \item Sind alle verwendeten Schriften und Schriftschnitte verfügbar?
-      \hint{Warnung \msg{Font shape `x' undefined} in der LOG-Datei prüfen.}
+      \hint{Warnung \msg{Font shape `x' undefined} in der \sfx{log}-Datei prüfen.}
    \item Werden noch obsolete Schriftschalter (z.\,B. \cs{bf}) benutzt?
       \hint{\url{https://ctan.org/pkg/l2tabu}}
    \item Werden Absätze korrekt ausgezeichnet (Leerzeile oder \cs{par}; nicht \cs{\textbackslash})?
@@ -178,14 +178,16 @@
 \begin{checklist}
    \item Werden Querverweise mit der \cs{label}-\cs{ref}-Mechanik erzeugt?
    \item Sind alle Querverweise eindeutig definiert?
-      \hint{Warnungen \msg{Reference `x' on page n undefined} oder \msg{Label `x' multiply defined} in der LOG-Datei prüfen und im Dokument nach \enquote{\textbf{??}} suchen.}
+      \hint{Warnungen \msg{Reference `x' on page n undefined} oder \msg{Label `x' multiply defined} in der \sfx{log}-Datei prüfen und im Dokument nach \enquote{\textbf{??}} suchen.}
    \item Werden Literaturverzeichnis und -verweise automatisch erzeugt?
    \item Sind alle Literaturverweise (Zitierschlüssel) definiert?
-      \hint{Warnung \msg{Citation `x' on page n undefined} in der LOG-Datei prüfen.}
+      \hint{Warnung \msg{Citation `x' on page n undefined} in der \sfx{log}-Datei prüfen.}
    \item Lässt sich die Bibliografie ohne Fehler und Warnungen verarbeiten?
-      \hint{Warnungen und Fehlermeldungen des Bibliographieprogramms (z.\,B. \prg{biber}) beachten.}
+      \hint{Warnungen und Fehlermeldungen des Bibliographieprogramms (z.\,B. \prg{biber}) beachten\\
+      \textrightarrow\ \sfx{blg}-Datei prüfen.}
    \item Lassen sich Index- und Glossarhilfsdateien ohne Fehler und Warnungen verarbeiten?
-      \hint{Warnungen und Fehlermeldungen des entsprechenden Programms (z.\,B. \prg{xindy}) beachten.}
+      \hint{Warnungen und Fehlermeldungen des entsprechenden Programms (z.\,B. \prg{xindy}) beachten\\
+      \textrightarrow\ \sfx{ilg}-/\sfx{glg}-Datei prüfen.}
 \end{checklist}
 
 \section{Abbildungen und Tabellen}
