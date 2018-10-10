@@ -79,6 +79,20 @@
 \newcommand{\msg}[1]{\textit{\enquote{#1}}}
 \newcommand{\sfx}[1]{\code{.#1}}
 
+% Pfeil
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\newcommand{\textrightarrow}{%
+   \tikz [
+      line width = 0.07em,
+      > = {Straight Barb[
+         width = 0.4em,
+         line cap = round,
+      ]},
+      line cap = round,
+   ] \draw [->] (0,0) -- (1em,0);
+}
+
 \begin{document}
 \RaggedRight
 
